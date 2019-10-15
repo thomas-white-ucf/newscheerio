@@ -1,20 +1,19 @@
-// Using the tools and techniques you learned so far,
-// you will scrape a website of your choice, then place the data
-// in a MongoDB database. Be sure to make the database and collection
-// before running this exercise.
-
-// Consult the assignment files from earlier in class
-// if you need a refresher on Cheerio.
+// Scrape a website, then place the data in a MongoDB database. 
+// Be sure to make the database and collection before running this exercise.
 
 // Dependencies
 require('dotenv').config();
 let express = require('express');
-// let HANDLEBARS + REQUIRE>>()
+var exphbs = require("express-handlebars");
 let bodyParser = require('body-parser');
 // let mongojs = require('mongojs');
 let mongoose = require('mongoose');
+let logger = require('morgan');
 let app = express();
 let PORT = process.env.PORT || 3000;
+
+// Promise = require("bluebird")
+// mongoose.Promise = Promise;
 
 // Require all models
 var db = require('./models');
@@ -23,11 +22,18 @@ var db = require('./models');
 let axios = require('axios');
 let cheerio = require('cheerio');
 
-// Parse request body as JSON     ** --- they had false for configure body parser for AJAX requests in the Setup Heroku example
+// Make public a static folder
+app.use(express.static('public'));
+app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// Make public a static folder
-app.use(express.static('/'));
+// Parse request body as JSON     
+// ** ex. had False for configure body parser for AJAX requests in the Setup Heroku example
+
+// Set Handlebars.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 
 mongoose.Promise = global.Promise;
 let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
@@ -39,22 +45,6 @@ mongoose.connect(MONGODB_URI, {
 	useUnifiedTopology: true
 });
 
-// mongoose.connection.once('open', function(){
-// 	console.log('Conection has been made!');
-//   }).on('error', function(error){
-// 	  console.log('Error is: ', error);
-//   });
-
-// Database configuration
-// let databaseUrl = 'drudge';
-// let collections = [ 'drudge' ];
-
-// Hook mongojs configuration to the db variable
-// var db = mongojs(databaseUrl, collections);
-// db.on('error', function(error) {
-// 	console.log('Database Error:', error);
-// });
-
 // Main route (simple Hello World Message)
 app.get('/', function(req, res) {
 	res.send('Hello world');
@@ -62,9 +52,7 @@ app.get('/', function(req, res) {
 
 // Route 1
 // =======
-// This route will retrieve all of the data
-// from the scrapedData collection as a json (this will be populated
-// by the data you scrape using the next route)
+// This route will retrieve all of the data from the scrapedData collection as a json
 app.get('/all', function(req, res) {
 	// Make a request via axios to grab the HTML body from the site of your choice
 	axios.get('https://www.drudgereport.com/').then(function(response) {
@@ -96,6 +84,7 @@ app.get('/all', function(req, res) {
 
 		// Log the results once you've looped through each of the elements found with cheerio
 		console.log(results);
+		res.render("index", {results: results});
 	});
 });
 
@@ -147,7 +136,40 @@ app.get('/drudge', function(req, res) {
 	res.send('Scrape Complete');
 });
 
+app.get('*', function(req, res) {
+	res.render('index', {msg: "Page Not Found"});
+});
+
 // Listen on PORT Variable
 app.listen(PORT, function() {
 	console.log(`App running on PORT: ${PORT}`);
 });
+
+
+// =========
+// =========
+
+
+
+
+
+
+
+
+//    END
+
+// mongoose.connection.once('open', function(){
+// 	console.log('Conection has been made!');
+//   }).on('error', function(error){
+// 	  console.log('Error is: ', error);
+//   });
+
+// Database configuration
+// let databaseUrl = 'drudge';
+// let collections = [ 'drudge' ];
+
+// Hook mongojs configuration to the db variable
+// var db = mongojs(databaseUrl, collections);
+// db.on('error', function(error) {
+// 	console.log('Database Error:', error);
+// });
