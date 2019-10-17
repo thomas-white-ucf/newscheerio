@@ -1,8 +1,18 @@
 <h1>index.handlebars file!</h1>
 <h2>{{msg}}</h2>
+<h2>{{apiMsg}}</h2>
+
+<button type="button" class="btn btn-success" id="scrapeButton">Scrape New Articles</button>
+<br>
+<h2>Scraped Articles</h2>
+
 <ul>
     {{#each results}}
        <li>{{title}} {{link}}</li> 
         
     {{/each}}
 </ul>
+
+
+<br>
+
