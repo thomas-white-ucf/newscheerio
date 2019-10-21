@@ -1,0 +1,22 @@
+<h2 class="mt-5 ml-3 text-success">Scraped Articles</h2>
+
+<div class="container-fluid">
+        {{!-- Dynamic Cards from Cheerio Scape - ONCLICK SCRAPE BUTTON --}}
+    <div>
+        {{#each results}}
+            <div class="card my-4 p-4 float" style="width: 40rem;">
+                <div class="card-header">
+                    <h3>{{title}} </h3>
+                    <button class="btn btn-info float-right">Save Article</button> 
+                </div> 
+                <div class="card-body">
+                    <a class="text-info mx-auto" rel="noopener noreferrer" target="_blank" href="{{link}}">{{link}}</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    
+    {{!-- NEWLY SCRAPED ARTICLES --}}
+    <div id="#newArticles"></div>
+
+</div>

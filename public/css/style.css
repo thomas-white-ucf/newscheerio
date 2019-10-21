@@ -1,9 +1,9 @@
-li {
+/* li {
   padding: 5px;
   margin: 5px;
   background: #faebd7;
-}
+} */
 body {
     text-align: center;
-    background-color: cornflowerblue;
+    background-color: rgb(41, 59, 92);
 }

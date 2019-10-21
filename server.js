@@ -1,7 +1,7 @@
 // Scrape a website, then place the data in a MongoDB database. 
 // Be sure to make the database and collection before running this exercise.
 
-// Dependencies
+// * Dependencies
 require('dotenv').config();
 let express = require('express');
 var exphbs = require("express-handlebars");
@@ -18,15 +18,15 @@ app.use(express.json());
 // Parse request body as JSON     
 // ex. had False for configure body parser for AJAX requests in the Setup Heroku example
 
-// Set Handlebars.
+// * Set Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
+// * Import routes and give the server access to them.
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
-// var routes = require("./controllers/controller");
 // app.use(routes);
+// var routes = require("./controllers/controller");
 
 mongoose.Promise = global.Promise;
 let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
@@ -49,7 +49,6 @@ app.listen(PORT, function() {
 });
 
 // =========
-
 //    END
 
 // Promise = require("bluebird")
