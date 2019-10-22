@@ -7,3 +7,6 @@ body {
     text-align: center;
     background-color: rgb(41, 59, 92);
 }
+.articlesBackground {
+  background-image: url("../images/prism.png");
+}

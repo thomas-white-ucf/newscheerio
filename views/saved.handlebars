@@ -2,16 +2,18 @@
 
 <div class="container">
 
-    <div id="savedArticles">
+    <div id="savedArticles" class="articlesBackground">
         <div>
             {{#each dbArticle}}
-                <div class="card my-4 p-4 float" style="width: 40rem;">
+                <div class="card my-4 p-4 text-center" style="width: 40rem;">
                     <div class="card-header">
                         <h3>{{title}} </h3>
-                        <button class="btn btn-info float-right">Save Article</button> 
+                        
+                        <button class="addNoteButton btn btn-success float-left">Add Note </button> 
                     </div> 
                     <div class="card-body">
                         <a class="text-info mx-auto" rel="noopener noreferrer" target="_blank" href="{{link}}">{{link}}</a>
+                         <button id="{{_id}}" class="deleteButton btn btn-danger float-right">Delete Article</button>
                     </div>
                 </div>
             {{/each}}
@@ -20,3 +22,4 @@
 
 
 </div>
+
