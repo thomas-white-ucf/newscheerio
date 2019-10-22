@@ -12,7 +12,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'POST',
 			url: '/api/savescrape'
-		}).then(setTimeout(renderFromDatabase, 1500));
+		}).then(renderFromDatabase);
 	}
 	function renderFromDatabase() {
 		console.log('renderFormDatabase');

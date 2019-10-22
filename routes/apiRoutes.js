@@ -39,7 +39,7 @@ module.exports = function(app) {
 					}
 				});
 
-				// res.json(results);
+				res.send("Success");
 			})
 			.catch(function(err) {
 				// If an error occurred, send it to the client

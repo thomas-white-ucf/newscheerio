@@ -1,10 +1,11 @@
 $(document).ready(function() {
 	console.log('Modal.JS > > > HITS');
 
-	$('#savedArtciles').on('click', '.addNoteButton', function() {
+	$('#savedArticles').on('click', '.addNoteButton', function() {
+		console.log("this === ", this)
 		var id = $(this).data('id');
 		console.log('id ===== ', id);
-		$('.thisNote #articleId').val(id);
+		$('#addNoteModal #articleId').val(id);
 		$('#addNoteModal').modal('show');
 	});
 
