@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    console.log("saved.JS > > > HITS HITS HITS")
+	console.log('saved.JS > > > HITS HITS HITS');
 
-
-    // Delete Article on Button Click
+	// Delete Article on Button Click
 	$('#savedArticles').on('click', '.deleteButton', function() {
 		event.preventDefault();
 
@@ -13,6 +12,13 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'PUT',
 			url: '/api/remove/' + thisId
-		}).then(console.log('Deleted Article from User Saved'));
+		}).then(location.reload());
 	});
-})
+});
+// reloadSavedPage = () => {
+// 	$.ajax({
+// 		type: 'GET',
+// 		url: '/saved'
+// 	}).then(console.log("reload Saved Page ... need to re--render saved page.."))
+
+// }

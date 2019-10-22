@@ -1,8 +1,8 @@
 var db = require('../models');
 
 // Require axios and cheerio. This makes the scraping possible
-let axios = require('axios');
-let cheerio = require('cheerio');
+// let axios = require('axios');
+// let cheerio = require('cheerio');
 
 module.exports = function(app) {
 	//  * Route *   =======  PUBLIC STATIC ROUTE

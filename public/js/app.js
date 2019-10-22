@@ -2,9 +2,9 @@ $(document).ready(function() {
 	console.log('Public > JS > test.js Loaded.');
 	console.log('=============================');
 
-	// ONCLICK _ AJAX post, then calls renderFromDatabase for AJAX GET after 1500ms setTimeout
-	$('#scrapeButton').on('click', savetoArticles);
-	function savetoArticles() {
+	// ONCLICK _ AJAX post > saveToArticles > /api/savescrape/then calls renderFromDatabase for AJAX GET after 1500ms setTimeout
+	$('#scrapeButton').on('click', saveToArticles);
+	function saveToArticles() {
 		// Clear last scraped articles
 		$('#newArticles').empty();
 
@@ -57,6 +57,8 @@ $(document).ready(function() {
 		}).then(console.log('Updated article DB parameter :> :>   saved : true'));
 	});
 });
+
+// =======================================
 
 //  ===========
 //    END

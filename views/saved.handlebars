@@ -8,8 +8,13 @@
                 <div class="card my-4 p-4 text-center" style="width: 40rem;">
                     <div class="card-header">
                         <h3>{{title}} </h3>
-                        
-                        <button class="addNoteButton btn btn-success float-left">Add Note </button> 
+                        <button type="button" class="addNoteButton btn btn-success float-left" 
+                        data-toggle="modal" data-target="#addNoteModal" id="{{_id}}">
+                            Add Note 
+                        </button> 
+                        {{!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setAnId">
+                        Add Note
+                        </button> --}}
                     </div> 
                     <div class="card-body">
                         <a class="text-info mx-auto" rel="noopener noreferrer" target="_blank" href="{{link}}">{{link}}</a>
@@ -22,4 +27,8 @@
 
 
 </div>
+
+<section>
+    {{> noteModal}}
+</section>
 
